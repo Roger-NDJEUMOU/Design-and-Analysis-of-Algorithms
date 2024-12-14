@@ -92,14 +92,98 @@ def quicksort(A:list, l:int, r:int):
         quicksort(A, split+1, r)
 
 
+class BT_Node():
+    """ 
+    A binary tree node is an object which has a 'value' and may have 'left_node' and/or 'right_node.
+    """
+    def __init__(self, node_value):
+        """ The node value is provided by the user at the time of the node creation """
+        self.value = node_value
+        self.left = None
+        self.right = None
+
+
+    def insert(self, new_value):
+        """ 
+        When the node has a value: 
+            Values less than the node value are added to the left while greater values are added to the right.
+        When the node doesn't have a value:
+            The 'new_value' is set as the node's value """
+        
+        if self.value:
+            if new_value < self.value:
+                if self.left is None:
+                    self.left = BT_Node(new_value)
+                else:
+                    self.left.insert(new_value)
+            elif new_value > self.value:
+                if self.right is None:
+                    self.right = BT_Node(new_value)
+                else:
+                    self.right.insert(new_value)
+        else:
+            self.value = new_value
+
+
+class BinaryTree():
+    """ A binary tree is considered as an object which consists of nodes """
+    def __init__(self, tree_items:list):
+        self.__items = tree_items
+        self.root = BT_Node(self.__items[0]) # the 1st item of the list is set to be the root of the binary tree
+        self.__construct() # build the binary tree
+
+
+    def __construct(self):
+        """ Build the binary tree using the provide items """
+        for item in self.__items:
+            self.root.insert(item)
+    
+    
+    def preorder_traversal(self, tr_root:BT_Node):
+        """ Root-Left-Right """
+        if tr_root:
+            print(tr_root.value, end=" ")
+            self.preorder_traversal(tr_root.left)
+            self.preorder_traversal(tr_root.right)
+
+
+    def inorder_traversal(self, tr_root:BT_Node):
+        """ Left-Root-Right """
+        if tr_root:
+            self.inorder_traversal(tr_root.left)
+            print(tr_root.value, end=" ")
+            self.inorder_traversal(tr_root.right)
+
+
+    def postorder_traversal(self, tr_root:BT_Node):
+        """ Left-Right-Root """
+        if tr_root:
+            self.postorder_traversal(tr_root.left)
+            self.postorder_traversal(tr_root.right)
+            print(tr_root.value, end=" ")
+
+
 if __name__ == "__main__" :
     A = [8, 3, 2, 9, 7, 1, 5, 4]
 
-    quicksort(A, 0, len(A)-1)
+    binary_tree = BinaryTree(A)
+
+    print("Pre-order Traversal: \t [", end=" ")
+    binary_tree.preorder_traversal(binary_tree.root)
+    print("]")
+
+    print("In-order Traversal: \t [", end=" ")
+    binary_tree.inorder_traversal(binary_tree.root)
+    print("]")
+
+    print("Post-order Traversal: \t [", end=" ")
+    binary_tree.postorder_traversal(binary_tree.root)
+    print("]")
+
+    # quicksort(A, 0, len(A)-1)
 
     # mergesort(A, 0, len(A)-1)
 
-    print(f"Sorted: {A}")
+    # print(f"Sorted: {A}")
 
     # print(sum_of_numbers(A, 0, len(A)-1))
-
