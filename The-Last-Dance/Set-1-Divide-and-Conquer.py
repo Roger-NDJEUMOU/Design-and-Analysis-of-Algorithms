@@ -63,7 +63,7 @@ def swap(A:list, i:int, j:int):
 
 def partition(A: list, l:int, r:int) -> int:
     """ Select the first element of A[l..r] as pivot, then split the array A such that
-        all elements less than or equal to the pivot appear to its left and all 
+        all elements less than the pivot appear to its left and all 
         elements greater than the pivot appear on its right. Finally, return the 
         pivot as the partition/split position. """
     
@@ -85,7 +85,7 @@ def partition(A: list, l:int, r:int) -> int:
 
 
 def quicksort(A:list, l:int, r:int):
-    """ Sorts a subarray by quicksort """
+    """ Sorts an array by quicksort """
     if l < r:
         split = partition(A, l, r)
         quicksort(A, l, split-1)
@@ -97,7 +97,7 @@ class BT_Node():
     A binary tree node is an object which has a 'value' and may have 'left_node' and/or 'right_node.
     """
     def __init__(self, node_value):
-        """ The node value is provided by the user at the time of the node creation """
+        """ The node value is provided at the time of the node creation """
         self.value = node_value
         self.left = None
         self.right = None
