@@ -163,10 +163,21 @@ class BinaryTree():
             print(tr_root.value, end=" ")
 
 
+    def height(self, node:BT_Node) -> int:
+        """ Computes recursively the height of a binary tree """
+        if node is None:
+            return -1
+        else:
+            return max(self.height(node.left), self.height(node.right)) + 1
+        
+
+
 if __name__ == "__main__" :
     A = [8, 3, 2, 9, 7, 1, 5, 4]
 
     binary_tree = BinaryTree(A)
+
+    print(f"The height of the binary tree is: {binary_tree.height(binary_tree.root)}")
 
     print("Pre-order Traversal: \t [", end=" ")
     binary_tree.preorder_traversal(binary_tree.root)
