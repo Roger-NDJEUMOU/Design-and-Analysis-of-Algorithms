@@ -13,8 +13,8 @@ def MF_knapsack(i:int, j:int):
         items being considered and a nonnegative integer j indicating
         the knapsack capacity
     Output: The value of an optimal feasible subset of the first i items
-    NB: Uses as global variables input arrays Weights[1..n], Values[1..n],
-        and table F [0..n, 0..W] whose entries are initialized with -1's except for
+    NB: Uses as global variables input arrays Weights[0..n-1], Values[0..n-1],
+        and table F [0..n+1, 0..W+1] whose entries are initialized with -1's except for
         row 0 and column 0 initialized with 0's
     """
     global F
